@@ -14,7 +14,234 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      notifications: {
+        Row: {
+          created_at: string
+          id: string
+          message: string
+          property_id: string | null
+          read: boolean | null
+          title: string
+          type: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          message: string
+          property_id?: string | null
+          read?: boolean | null
+          title: string
+          type: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          message?: string
+          property_id?: string | null
+          read?: boolean | null
+          title?: string
+          type?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "notifications_property_id_fkey"
+            columns: ["property_id"]
+            isOneToOne: false
+            referencedRelation: "properties"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      profiles: {
+        Row: {
+          avatar_url: string | null
+          created_at: string
+          email: string | null
+          full_name: string | null
+          id: string
+          notification_settings: Json | null
+          phone: string | null
+          preferences: Json | null
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          avatar_url?: string | null
+          created_at?: string
+          email?: string | null
+          full_name?: string | null
+          id?: string
+          notification_settings?: Json | null
+          phone?: string | null
+          preferences?: Json | null
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          avatar_url?: string | null
+          created_at?: string
+          email?: string | null
+          full_name?: string | null
+          id?: string
+          notification_settings?: Json | null
+          phone?: string | null
+          preferences?: Json | null
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      properties: {
+        Row: {
+          address: string
+          agent_contact: string | null
+          agent_name: string | null
+          amenities: Json | null
+          area_sqft: number
+          bathrooms: number
+          bedrooms: number
+          city: string
+          created_at: string
+          description: string | null
+          features: Json | null
+          furnished: boolean | null
+          id: string
+          images: Json | null
+          latitude: number | null
+          longitude: number | null
+          parking_spaces: number | null
+          pet_friendly: boolean | null
+          price: number
+          property_type: string
+          state: string
+          status: string | null
+          title: string
+          updated_at: string
+          year_built: number | null
+          zipcode: string | null
+        }
+        Insert: {
+          address: string
+          agent_contact?: string | null
+          agent_name?: string | null
+          amenities?: Json | null
+          area_sqft: number
+          bathrooms: number
+          bedrooms: number
+          city: string
+          created_at?: string
+          description?: string | null
+          features?: Json | null
+          furnished?: boolean | null
+          id?: string
+          images?: Json | null
+          latitude?: number | null
+          longitude?: number | null
+          parking_spaces?: number | null
+          pet_friendly?: boolean | null
+          price: number
+          property_type: string
+          state: string
+          status?: string | null
+          title: string
+          updated_at?: string
+          year_built?: number | null
+          zipcode?: string | null
+        }
+        Update: {
+          address?: string
+          agent_contact?: string | null
+          agent_name?: string | null
+          amenities?: Json | null
+          area_sqft?: number
+          bathrooms?: number
+          bedrooms?: number
+          city?: string
+          created_at?: string
+          description?: string | null
+          features?: Json | null
+          furnished?: boolean | null
+          id?: string
+          images?: Json | null
+          latitude?: number | null
+          longitude?: number | null
+          parking_spaces?: number | null
+          pet_friendly?: boolean | null
+          price?: number
+          property_type?: string
+          state?: string
+          status?: string | null
+          title?: string
+          updated_at?: string
+          year_built?: number | null
+          zipcode?: string | null
+        }
+        Relationships: []
+      }
+      property_views: {
+        Row: {
+          id: string
+          property_id: string
+          session_id: string | null
+          user_id: string | null
+          viewed_at: string
+        }
+        Insert: {
+          id?: string
+          property_id: string
+          session_id?: string | null
+          user_id?: string | null
+          viewed_at?: string
+        }
+        Update: {
+          id?: string
+          property_id?: string
+          session_id?: string | null
+          user_id?: string | null
+          viewed_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "property_views_property_id_fkey"
+            columns: ["property_id"]
+            isOneToOne: false
+            referencedRelation: "properties"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      user_favorites: {
+        Row: {
+          created_at: string
+          id: string
+          property_id: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          property_id: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          property_id?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "user_favorites_property_id_fkey"
+            columns: ["property_id"]
+            isOneToOne: false
+            referencedRelation: "properties"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
     }
     Views: {
       [_ in never]: never
